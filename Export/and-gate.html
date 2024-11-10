@@ -1,8 +1,204 @@
-<!DOCTYPE html><html data-bs-theme="auto" lang="en" style="background: rgb(45,44,56);"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"><title>Binary Simulator - CS:Box</title><meta name="twitter:card" content="summary_large_image"><meta property="og:type" content="website"><meta property="og:image" content="https://csbox.mrdaviscsit.uk/assets/img/CSBoxLogo.svg">
-			<script>!function(){const e=()=>localStorage.getItem("theme"),t=document.documentElement.getAttribute("data-bss-forced-theme"),a=()=>{if(t)return t;const a=e();if(a)return a;const r=document.documentElement.getAttribute("data-bs-theme");return r||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")},r=e=>{"auto"===e&&window.matchMedia("(prefers-color-scheme: dark)").matches?document.documentElement.setAttribute("data-bs-theme","dark"):document.documentElement.setAttribute("data-bs-theme",e)};r(a());const c=(e,t=!1)=>{const a=[].slice.call(document.querySelectorAll(".theme-switcher"));if(a.length){document.querySelectorAll("[data-bs-theme-value]").forEach((e=>{e.classList.remove("active"),e.setAttribute("aria-pressed","false")}));for(const t of a){const a=t.querySelector('[data-bs-theme-value="'+e+'"]');a&&(a.classList.add("active"),a.setAttribute("aria-pressed","true"))}}};window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",(()=>{const t=e();"light"!==t&&"dark"!==t&&r(a())})),window.addEventListener("DOMContentLoaded",(()=>{c(a()),document.querySelectorAll("[data-bs-theme-value]").forEach((e=>{e.addEventListener("click",(t=>{t.preventDefault();const a=e.getAttribute("data-bs-theme-value");(e=>{localStorage.setItem("theme",e)})(a),r(a),c(a)}))}))}))}();</script><link rel="icon" type="image/svg+xml" sizes="500x500" href="/assets/img/CSBoxLogo.svg?h=ca838acaf7f1bc97e10657f07ed63d71"><link rel="icon" type="image/svg+xml" sizes="500x500" href="/assets/img/CSBoxLogo.svg?h=ca838acaf7f1bc97e10657f07ed63d71" media="(prefers-color-scheme: dark)"><link rel="icon" type="image/svg+xml" sizes="500x500" href="/assets/img/CSBoxLogo.svg?h=ca838acaf7f1bc97e10657f07ed63d71"><link rel="icon" type="image/svg+xml" sizes="500x500" href="/assets/img/CSBoxLogo.svg?h=ca838acaf7f1bc97e10657f07ed63d71" media="(prefers-color-scheme: dark)"><link rel="icon" type="image/svg+xml" sizes="500x500" href="/assets/img/CSBoxLogo.svg?h=ca838acaf7f1bc97e10657f07ed63d71"><link rel="icon" type="image/svg+xml" sizes="500x500" href="/assets/img/CSBoxLogo.svg?h=ca838acaf7f1bc97e10657f07ed63d71"><link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css?h=ae25e30cd2ef0f4f5b70ebf4c668048b"><link rel="stylesheet" href="/assets/css/styles.min.css?h=2f2df3c9515080a119fce847521b000e"></head><body><header class="bg-dark"><!-- Start: Site Navigation --><nav class="navbar navbar-expand-md sticky-top py-3 navbar-dark" id="mainNav" style="background: rgb(45, 44, 56);"><div class="container"><img src="/assets/img/CSBoxLogo.svg?h=ca838acaf7f1bc97e10657f07ed63d71" style="width: 32px;margin: 5px;"><a class="navbar-brand d-flex align-items-center" href="/"><span>CS:Box</span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-5"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="navcol-5"><ul class="navbar-nav ms-auto"><li class="nav-item"><a class="nav-link" href="/">Home</a></li><li class="nav-item"><a class="nav-link" href="about">About</a></li><li class="nav-item"><a class="nav-link" href="binary">Binary</a></li><li class="nav-item dropdown show"><a class="dropdown-toggle nav-link" aria-expanded="true" data-bs-toggle="dropdown" data-bs-auto-close="false" href="#">Hexadecimal</a><div class="dropdown-menu show" data-bs-popper="none"><a class="dropdown-item" href="gcse-hexadecimal">GCSE</a><a class="dropdown-item" href="a-level-hexadecimal">A Level</a></div></li><li class="nav-item"><a class="nav-link" href="hex-colours">Hex Colours</a></li><li class="nav-item dropdown show"><a class="dropdown-toggle nav-link fw-bold link-success" aria-expanded="true" data-bs-toggle="dropdown" data-bs-auto-close="false" href="#">Logic Gates</a><div class="dropdown-menu show" data-bs-popper="none"><a class="dropdown-item" href="not-gate">NOT</a><a class="dropdown-item fw-bold link-success" href="and-gate">AND</a><a class="dropdown-item" href="or-gate">OR</a></div></li></ul></div></div></nav><!-- End: Site Navigation --></header><section style="background: rgb(39,38,46);"><!-- Start: 1 Row 2 Columns --><div class="container" style="width: 100%;margin-top: 15px;"><div class="row"><div class="col" style="height: 120px;"></div></div><div class="row"><div class="col"><h1 id="pageHeading" class="simHeading">AND Gate</h1></div></div></div><!-- End: 1 Row 2 Columns --><!-- Start: 1 Row 3 Columns --><div class="container"><div class="row"><div class="col-auto logicGates centred" style="height: 194px;"><button class="btn btn-primary buttonMiddle logicGateInput1" id="swtInput1" type="button" onclick="input1Toggle()" style="display: grid;position: relative;transform: translate(58px);">⏼</button><button class="btn btn-primary buttonMiddle logicGateInput2" id="swtInput2" type="button" onclick="input2Toggle()" style="position: relative;display: grid;">⏼</button><img class="logicGate" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/AND_ANSI.svg/1920px-AND_ANSI.svg.png" width="460" height="240"><h1 id="blbAndGate" class="poweredOff dualInputSingleOutput">💡<br></h1></div></div><div class="row"><div class="col-auto logicGates centred" style="height: 194px;"><button class="btn btn-primary warning btnReset" id="gateReset" type="button" style="margin-top: 3em;" onclick="resetGate()">Reset</button></div></div></div><!-- End: 1 Row 3 Columns --><div class="container d-xl-flex justify-content-xl-center centred" style="height: 120px;"></div></section><!-- Start: Footer Multi Column --><footer style="background: rgb(45,44,56);"><div class="container py-4 py-lg-5"><div class="row justify-content-center"><!-- Start: About Project --><div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column"><h1 style="font-size: 16px;font-weight: bold;margin-top: 10px;">About Project</h1><a href="https://github.com/MrDavisCSIT/CS-Box" target="_blank"><div class="fw-bold d-flex align-items-center mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-github" style="font-size: 25px;margin-right: 10px;">
-  <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8"></path>
-</svg><span>GitHub</span></div></a></div><!-- End: About Project --><!-- Start: About --><div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column"></div><!-- End: About --><!-- Start: Social Links --><div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column"><h1 style="font-size: 16px;font-weight: bold;margin-top: 10px;">Social Media</h1><div class="row"><div class="col-md-3"><a href="https://x.com/MrDavisCSIT" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-twitter social-media">
-  <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15"></path>
-</svg></a></div><div class="col-md-3"><a href="https://github.com/MrDavisCSIT" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-github social-media">
-  <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8"></path>
-</svg></a></div><div class="col-md-3"></div><div class="col-md-3"></div></div></div><!-- End: Social Links --><!-- Start: Branding --><div class="col-lg-3 text-center text-lg-start d-flex flex-column align-items-center order-first align-items-lg-start order-lg-last"><div class="fw-bold d-flex align-items-center mb-2"><img src="/assets/img/CSBoxLogo.svg?h=ca838acaf7f1bc97e10657f07ed63d71" style="width: 32px;margin: 5px;"><span>CS:Box</span></div><p class="text-muted">Computer Science Concept Simulators</p></div><!-- End: Branding --></div><hr><div class="text-muted d-flex justify-content-between align-items-center pt-3"><p class="mb-0">Copyright © 2024 CS:Box<br>Powered By ADCM Networks</p></div></div></footer><!-- End: Footer Multi Column --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script><script src="/assets/js/script.min.js?h=65538d3584b9ecc37e34b49cc2c9ad5a"></script></body></html>
+<!DOCTYPE html>
+<html data-bs-theme="auto" lang="en" style="background: rgb(45,44,56);">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Binary Simulator - CS:Box</title>
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://csbox.mrdaviscsit.uk/assets/img/CSBoxLogo.svg">
+    <script>
+        (function() {
+
+            // JavaScript snippet handling Dark/Light mode switching
+
+            const getStoredTheme = () => localStorage.getItem('theme');
+            const setStoredTheme = theme => localStorage.setItem('theme', theme);
+            const forcedTheme = document.documentElement.getAttribute('data-bss-forced-theme');
+
+            const getPreferredTheme = () => {
+
+                if (forcedTheme) return forcedTheme;
+
+                const storedTheme = getStoredTheme();
+                if (storedTheme) {
+                    return storedTheme;
+                }
+
+                const pageTheme = document.documentElement.getAttribute('data-bs-theme');
+
+                if (pageTheme) {
+                    return pageTheme;
+                }
+
+                return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+
+            const setTheme = theme => {
+                if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    document.documentElement.setAttribute('data-bs-theme', 'dark');
+                } else {
+                    document.documentElement.setAttribute('data-bs-theme', theme);
+                }
+            }
+
+            setTheme(getPreferredTheme());
+
+            const showActiveTheme = (theme, focus = false) => {
+                const themeSwitchers = [].slice.call(document.querySelectorAll('.theme-switcher'));
+
+                if (!themeSwitchers.length) return;
+
+                document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
+                    element.classList.remove('active');
+                    element.setAttribute('aria-pressed', 'false');
+                });
+
+                for (const themeSwitcher of themeSwitchers) {
+
+                    const btnToActivate = themeSwitcher.querySelector('[data-bs-theme-value="' + theme + '"]');
+
+                    if (btnToActivate) {
+                        btnToActivate.classList.add('active');
+                        btnToActivate.setAttribute('aria-pressed', 'true');
+                    }
+                }
+            }
+
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+                const storedTheme = getStoredTheme();
+                if (storedTheme !== 'light' && storedTheme !== 'dark') {
+                    setTheme(getPreferredTheme());
+                }
+            });
+
+            window.addEventListener('DOMContentLoaded', () => {
+                showActiveTheme(getPreferredTheme());
+
+                document.querySelectorAll('[data-bs-theme-value]')
+                    .forEach(toggle => {
+                        toggle.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const theme = toggle.getAttribute('data-bs-theme-value');
+                            setStoredTheme(theme);
+                            setTheme(theme);
+                            showActiveTheme(theme);
+                        })
+                    })
+            });
+        })();
+    </script>
+    <link rel="icon" type="image/svg+xml" sizes="500x500" href="/assets/img/CSBoxLogo.svg?h=ca838acaf7f1bc97e10657f07ed63d71">
+    <link rel="icon" type="image/svg+xml" sizes="500x500" href="/assets/img/CSBoxLogo.svg?h=ca838acaf7f1bc97e10657f07ed63d71" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/svg+xml" sizes="500x500" href="/assets/img/CSBoxLogo.svg?h=ca838acaf7f1bc97e10657f07ed63d71">
+    <link rel="icon" type="image/svg+xml" sizes="500x500" href="/assets/img/CSBoxLogo.svg?h=ca838acaf7f1bc97e10657f07ed63d71" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/svg+xml" sizes="500x500" href="/assets/img/CSBoxLogo.svg?h=ca838acaf7f1bc97e10657f07ed63d71">
+    <link rel="icon" type="image/svg+xml" sizes="500x500" href="/assets/img/CSBoxLogo.svg?h=ca838acaf7f1bc97e10657f07ed63d71">
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css?h=ae25e30cd2ef0f4f5b70ebf4c668048b">
+    <link rel="stylesheet" href="/assets/css/DSEG7%20Classic%20Regular.css">
+    <link rel="stylesheet" href="/assets/css/IEC%20symbols%20Unicode.css?h=f58bcc159dfcde3a8902f3c3e5961248">
+    <link rel="stylesheet" href="/assets/css/Inter.css?h=19ed85aa2b2b2d862393d46e9e4754c1">
+    <link rel="stylesheet" href="/assets/css/Open%20Sans.css?h=20a4cf6023d41bd3d4b0306d0fa982e1">
+    <link rel="stylesheet" href="/assets/css/Seven%20Segment.css?h=f58bcc159dfcde3a8902f3c3e5961248">
+    <link rel="stylesheet" href="/assets/css/bs-theme-overrides.css?h=c211b632aade4ff7985e7a32a316c7b8">
+    <link rel="stylesheet" href="/assets/css/Slider-Range.css?h=4efe779849cd30bd3d3d760928f00db9">
+    <link rel="stylesheet" href="/assets/css/styles.css?h=c551d2243ad50183e0f7b2121da72836">
+</head>
+
+<body>
+    <header class="bg-dark">
+        <!-- Start: Site Navigation -->
+        <nav class="navbar navbar-expand-md sticky-top py-3 navbar-dark" id="mainNav" style="background: rgb(45, 44, 56);">
+            <div class="container"><img src="/assets/img/CSBoxLogo.svg?h=ca838acaf7f1bc97e10657f07ed63d71" style="width: 32px;margin: 5px;"><a class="navbar-brand d-flex align-items-center" href="/"><span>CS:Box</span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-5"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navcol-5">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="binary">Binary</a></li>
+                        <li class="nav-item dropdown show"><a class="dropdown-toggle nav-link" aria-expanded="true" data-bs-toggle="dropdown" data-bs-auto-close="false" href="#">Hexadecimal</a>
+                            <div class="dropdown-menu show" data-bs-popper="none"><a class="dropdown-item" href="gcse-hexadecimal">GCSE</a><a class="dropdown-item" href="a-level-hexadecimal">A Level</a></div>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="hex-colours">Hex Colours</a></li>
+                        <li class="nav-item dropdown show"><a class="dropdown-toggle nav-link fw-bold link-success" aria-expanded="true" data-bs-toggle="dropdown" data-bs-auto-close="false" href="#">Logic Gates</a>
+                            <div class="dropdown-menu show" data-bs-popper="none"><a class="dropdown-item" href="not-gate">NOT</a><a class="dropdown-item fw-bold link-success" href="and-gate">AND</a><a class="dropdown-item" href="or-gate">OR</a></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav><!-- End: Site Navigation -->
+    </header>
+    <section style="background: rgb(39,38,46);">
+        <!-- Start: 1 Row 2 Columns -->
+        <div class="container" style="width: 100%;margin-top: 15px;">
+            <div class="row">
+                <div class="col" style="height: 120px;"></div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h1 id="pageHeading" class="simHeading">AND Gate</h1>
+                </div>
+            </div>
+        </div><!-- End: 1 Row 2 Columns -->
+        <!-- Start: 1 Row 3 Columns -->
+        <div class="container">
+            <div class="row">
+                <div class="col-auto logicGates centred" style="height: 194px;"><button class="btn btn-primary buttonMiddle logicGateInput1" id="swtInput1" type="button" onclick="input1Toggle()" style="display: grid;position: relative;transform: translate(58px);">⏼</button><button class="btn btn-primary buttonMiddle logicGateInput2" id="swtInput2" type="button" onclick="input2Toggle()" style="position: relative;display: grid;">⏼</button><img class="logicGate" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/AND_ANSI.svg/1920px-AND_ANSI.svg.png" width="460" height="240">
+                    <h1 id="blbAndGate" class="poweredOff dualInputSingleOutput">💡<br></h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-auto logicGates centred" style="height: 194px;"><button class="btn btn-primary warning btnReset" id="gateReset" type="button" style="margin-top: 3em;" onclick="resetGate()">Reset</button></div>
+            </div>
+        </div><!-- End: 1 Row 3 Columns -->
+        <div class="container d-xl-flex justify-content-xl-center centred" style="height: 120px;"></div>
+    </section><!-- Start: Footer Multi Column -->
+    <footer style="background: rgb(45,44,56);">
+        <div class="container py-4 py-lg-5">
+            <div class="row justify-content-center">
+                <!-- Start: About Project -->
+                <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column">
+                    <h1 style="font-size: 16px;font-weight: bold;margin-top: 10px;">About Project</h1><a href="https://github.com/MrDavisCSIT/CS-Box" target="_blank">
+                        <div class="fw-bold d-flex align-items-center mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-github" style="font-size: 25px;margin-right: 10px;">
+                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8"></path>
+                            </svg><span>GitHub</span></div>
+                    </a>
+                </div><!-- End: About Project -->
+                <!-- Start: About -->
+                <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column"></div><!-- End: About -->
+                <!-- Start: Social Links -->
+                <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column">
+                    <h1 style="font-size: 16px;font-weight: bold;margin-top: 10px;">Social Media</h1>
+                    <div class="row">
+                        <div class="col-md-3"><a href="https://x.com/MrDavisCSIT" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-twitter social-media">
+                                    <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15"></path>
+                                </svg></a></div>
+                        <div class="col-md-3"><a href="https://github.com/MrDavisCSIT" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-github social-media">
+                                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8"></path>
+                                </svg></a></div>
+                        <div class="col-md-3"></div>
+                        <div class="col-md-3"></div>
+                    </div>
+                </div><!-- End: Social Links -->
+                <!-- Start: Branding -->
+                <div class="col-lg-3 text-center text-lg-start d-flex flex-column align-items-center order-first align-items-lg-start order-lg-last">
+                    <div class="fw-bold d-flex align-items-center mb-2"><img src="/assets/img/CSBoxLogo.svg?h=ca838acaf7f1bc97e10657f07ed63d71" style="width: 32px;margin: 5px;"><span>CS:Box</span></div>
+                    <p class="text-muted">Computer Science Concept Simulators</p>
+                </div><!-- End: Branding -->
+            </div>
+            <hr>
+            <div class="text-muted d-flex justify-content-between align-items-center pt-3">
+                <p class="mb-0">Copyright © 2024 CS:Box<br>Powered By ADCM Networks</p>
+            </div>
+        </div>
+    </footer><!-- End: Footer Multi Column -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/binary.js?h=18425c639e662d80cb746c1c2baa1ac3"></script>
+    <script src="/assets/js/boldAndDark.js?h=78569998362133b84a76614652f3624f"></script>
+    <script src="/assets/js/hexadecimal.js?h=5e856b38fe73cc6a4b28b67731ef698d"></script>
+    <script src="/assets/js/hexColours.js?h=01c0cbef76923a000aa2f44bab6678e3"></script>
+    <script src="/assets/js/logicGates.js?h=7f81a70d0740328beb4032b8b5277621"></script>
+</body>
+
+</html>
