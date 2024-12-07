@@ -1,5 +1,5 @@
 # CS:Box
-Evolution of Bit:Box to incorportate different elements of the UK Computing Curriculum
+Evolution of Bit:Box to incorporate different elements of the UK Computing Curriculum
 Available at [csbox.mrdaviscsit.uk](https://csbox.mrdaviscsit.uk)
 
 ## Upcoming Features
@@ -10,9 +10,9 @@ Available at [csbox.mrdaviscsit.uk](https://csbox.mrdaviscsit.uk)
 - [x] Hex Colour Simulator
 
 ### Wave 1 CS:Box Features (Easter 2025)
-- [ ] NOT Gate Simulator
-- [ ] OR Gate Simulator
-- [ ] AND Gate Simulator
+- [x] NOT Gate Simulator
+- [x] OR Gate Simulator
+- [x] AND Gate Simulator
 
 ### Wave 2 CS:Box Features (May 2025)
 - [ ] NOR Gate Simulator

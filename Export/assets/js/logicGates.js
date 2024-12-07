@@ -1,100 +1,77 @@
-notValue = true
-andValue = false
-input1 = false
-input2 = false
-orValue = false
-function notGateToggle(){
-    if (notValue){
-        document.getElementById("blbNotGate").classList.remove('poweredOn');
-        document.getElementById("blbNotGate").classList.add('poweredOff');
-        document.getElementById("swtNotGate").classList.add('btnActive');
-        notValue = false;
-    }else{
-        document.getElementById("blbNotGate").classList.remove('poweredOff');
-        document.getElementById("blbNotGate").classList.add('poweredOn');
-        document.getElementById("swtNotGate").classList.remove('btnActive');
-        notValue = true;
-    }
+let notValue = true;
+let andValue = false;
+let orValue = false;
+let input1 = false;
+let input2 = false;
+
+const pageHeading = document.getElementById("pageHeading")?.textContent || "";
+
+// **Toggle any gate input (e.g., input1, input2, or NOT gate)**
+function toggleGate(gateType) {
+    const gateKey = gateType === 'NOT' ? 'NotGate' : `Input${gateType}`;
+    const gateSwitch = document.getElementById(`swt${gateKey}`);
+    const isActive = gateType === '1' ? input1 : gateType === '2' ? input2 : notValue;
+
+    const newValue = !isActive;
+    if (gateType === '1') input1 = newValue;
+    if (gateType === '2') input2 = newValue;
+    if (gateType === 'NOT') notValue = newValue;
+
+    gateSwitch?.classList.toggle('btnActive', newValue);
+
+    updateGates();
 }
 
-function input1Toggle(){
-    if (input1){
-        input1 = false;
-        document.getElementById("swtInput1").classList.remove('btnActive');
-    }else{
-        input1 = true;
-        document.getElementById("swtInput1").classList.add('btnActive');
-    }
-    let pageHeading = document.getElementById("pageHeading").textContent;
-    if(pageHeading=="AND Gate"){
-        andGateUpdate()
-    }else if(pageHeading=="OR Gate"){
-        orGateUpdate()
-    }
+// **Update AND, OR, and NOT gates based on the current input state**
+function updateGates() {
+    if (pageHeading === "AND Gate") updateGate('AndGate', input1 && input2);
+    if (pageHeading === "OR Gate") updateGate('OrGate', input1 || input2);
+    if (pageHeading === "NOT Gate") updateGate('NotGate', !notValue);
 }
 
-function input2Toggle(){
-    if (input2){
-        input2 = false;
-        document.getElementById("swtInput2").classList.remove('btnActive');
-    }else{
-        input2 = true;
-        document.getElementById("swtInput2").classList.add('btnActive');
-    }
-    let pageHeading = document.getElementById("pageHeading").textContent;
-    if(pageHeading=="AND Gate"){
-        andGateUpdate()
-    }else if(pageHeading=="OR Gate"){
-        orGateUpdate()
-    }
+// **Toggle the output bulb for a gate (e.g., AndGate, OrGate, or NotGate)**
+function updateGate(gateName, isActive) {
+    const bulb = document.getElementById(`blb${gateName}`);
+    if (!bulb) return;
+
+    bulb.classList.toggle('poweredOn', isActive);
+    bulb.classList.toggle('poweredOff', !isActive);
+    
+    if (gateName === 'AndGate') andValue = isActive;
+    if (gateName === 'OrGate') orValue = isActive;
 }
 
-function andGateUpdate(){
-    if (input1 && input2){
-            document.getElementById("blbAndGate").classList.remove('poweredOff');
-            document.getElementById("blbAndGate").classList.add('poweredOn');
-            andValue = true;
-    }else{
-        if (andValue){
-            document.getElementById("blbAndGate").classList.remove('poweredOn');
-            document.getElementById("blbAndGate").classList.add('poweredOff');
-            andValue = false;
-        }
-        }
+// **Reset the gate to its default state**
+function resetGate() {
+    if (pageHeading === "AND Gate" || pageHeading === "OR Gate") {
+        resetInput('1');
+        resetInput('2');
+    } else if (pageHeading === "NOT Gate") {
+        resetNotGate();
     }
-
-function orGateUpdate(){
-    if (input1 || input2){
-        if (!orValue){
-            document.getElementById("blbOrGate").classList.remove('poweredOff');
-            document.getElementById("blbOrGate").classList.add('poweredOn');
-            orValue = true;
-        }
-    }else{
-        if (orValue){
-            document.getElementById("blbOrGate").classList.remove('poweredOn');
-            document.getElementById("blbOrGate").classList.add('poweredOff');
-            orValue = false;
-        }
-    }
+    updateGates();
 }
 
-function resetGate(){
-    let pageHeading = document.getElementById("pageHeading").textContent;
-    if(pageHeading=="AND Gate" || pageHeading=="OR Gate"){
-        input1 = false;
-        document.getElementById("swtInput1").classList.remove('btnActive');
-        input2 = false;
-        document.getElementById("swtInput2").classList.remove('btnActive');
-        if(pageHeading=="AND Gate"){
-            andGateUpdate()
-        }else if(pageHeading=="OR Gate"){
-            orGateUpdate()
-        };
-    }else if(pageHeading=="NOT Gate"){
-        document.getElementById("blbNotGate").classList.add('poweredOn');
-        document.getElementById("blbNotGate").classList.remove('poweredOff');
-        document.getElementById("swtNotGate").classList.remove('btnActive');
-        notValue = false;
-    };
+// **Reset the inputs for Input1 or Input2**
+function resetInput(inputNumber) {
+    if (inputNumber === '1') input1 = false;
+    if (inputNumber === '2') input2 = false;
+
+    const switchElement = document.getElementById(`swtInput${inputNumber}`);
+    if (switchElement) switchElement.classList.remove('btnActive');
+}
+
+// **Reset the NOT gate to its default state**
+function resetNotGate() {
+    notValue = false; // NOT Gate logic is inverted, so this is "off" input
+    const bulb = document.getElementById("blbNotGate");
+    const switchElement = document.getElementById("swtNotGate");
+
+    if (bulb) {
+        bulb.classList.add('poweredOn'); // Light should be on
+        bulb.classList.remove('poweredOff');
+    }
+    if (switchElement) {
+        switchElement.classList.remove('btnActive'); // Button should be off (inactive)
+    }
 }

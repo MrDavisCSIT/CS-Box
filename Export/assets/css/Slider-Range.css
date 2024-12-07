@@ -17,3 +17,13 @@
   opacity: 1;
 }
 
+.customiserButtons {
+  background-color: var(--bs-btn-active-bg) !important;
+  border-color: var(--bs-btn-active-border-color) !important;
+}
+
+.customiserButtons:hover {
+  background-color: #198754 !important;
+  border-color: #198754 !important;
+}
+

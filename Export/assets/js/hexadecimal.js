@@ -1,159 +1,63 @@
-denary = 0
-binary = ""
-hexadecimal = ""
-place1 = 0
-place16 = 0
-place256 = 0
-place4096 = 0
-slider4096 = document.getElementById("slider4096");
-slider256 = document.getElementById("slider256");
-let hexadecimalNumber = document.getElementById("hexadecimalNumber").textContent;
-let hexLength = hexadecimalNumber.length
-if(hexLength==4){
-  slider4096.addEventListener("change", update4096);
-  slider256.addEventListener("change", update256);
-}
-slider16 = document.getElementById("slider16");
-slider1 = document.getElementById("slider1");
-slider16.addEventListener("change", update16);
-slider1.addEventListener("change", update1);
+// Ensure the script only runs if the URL path contains "hexadecimal"
+if (window.location.pathname.includes('hexadecimal')) {
 
-function resetHexadecimal(){
-    let hexadecimalNumber = document.getElementById("hexadecimalNumber").textContent;
-    let hexLength = hexadecimalNumber.length;
-    if(hexLength==4){
-        resetPlace4096();
-        resetPlace256();
-    }
-    resetPlace16();
-    resetPlace1();
-}
-function resetPlace4096(){
-    place4096 = 0;
-    document.getElementById("slider4096").value=0;
-    var light4096 = (100/15 * place4096) / 100;
-    document.getElementById("blb4").style.opacity = light4096;
-    updateNumbers();
-}
-function resetPlace256(){
-    place256 = 0;
-    document.getElementById("slider256").value=0;
-    var light256 = (100/15 * place256) / 100;
-    document.getElementById("blb3").style.opacity = light256;
-    updateNumbers();
-}
-function resetPlace16(){
-    place16 = 0;
-    document.getElementById("slider16").value=0;
-    var light16 = (100/15 * place16) / 100;
-    document.getElementById("blb2").style.opacity = light16;
-    updateNumbers();
-}
-function resetPlace1(){
-    place1 = 0;
-    document.getElementById("slider1").value=0;
-    var light1 = (100/15 * place1) / 100;
-    document.getElementById("blb1").style.opacity = light1;
-    updateNumbers();
-}
-function update4096(){
-  place4096 = document.getElementById("slider4096").value;
-  var light4096 = (100/15 * place4096) / 100;
-  document.getElementById("blb4").style.opacity = light4096;
-  updateNumbers();
-}
-function update256(){
-          place256 = document.getElementById("slider256").value;
-          var light256 = (100/15 * place256) / 100;
-          document.getElementById("blb3").style.opacity = light256;
-          updateNumbers();
-}
-function update16(){
-          place16 = document.getElementById("slider16").value;
-          var light16 = (100/15 * place16) / 100;
-          document.getElementById("blb2").style.opacity = light16;
-          updateNumbers();
-}
-function update1(){
-  place1 = document.getElementById("slider1").value;
-  var light1 = (100/15 * place1) / 100;
-  document.getElementById("blb1").style.opacity = light1;
-  updateNumbers();
-}
-function updateNumbers(){
-    binary = "";
-    hexadecimal = "";
-    let hexadecimalNumber = document.getElementById("hexadecimalNumber").textContent;
-    let hexLength = hexadecimalNumber.length;
-    if(hexLength==4){
-        denary = (place4096*4096)+(place256*256)+(place16*16)+(place1);
-        hexadecimal = convertToHex(place4096) + convertToHex(place256) + convertToHex(place16) + convertToHex(place1);
-        binary = convertToBinary(place4096) + convertToBinary(place256) + convertToBinary(place16) + convertToBinary(place1);
-    }else if(hexLength==2){
-        denary = (place16*16)+(place1);
-        hexadecimal = convertToHex(place16) + convertToHex(place1);
-        binary = convertToBinary(place16) + convertToBinary(place1);
-    }
-    document.getElementById("denaryNumber").innerHTML = denary;
-    document.getElementById("hexadecimalNumber").innerHTML = hexadecimal;
-    document.getElementById("binaryNumber").innerHTML = binary;
-}
-function convertToHex(num){
-    var remainder = num - 9;
-    if(remainder<=0){
-        return num.toString();
-    }else{
-        if(remainder==1){
-            return "A";
-        }else if(remainder == 2){
-            return "B";
-        }else if(remainder == 3){
-            return "C";
-        }else if(remainder == 4){
-            return "D";
-        }else if(remainder == 5){
-            return "E";
-        }else if(remainder == 6){
-            return "F";
+    const isGCSE = window.location.pathname.includes('gcse-hexadecimal');
+    const hexLength = isGCSE ? 2 : 4;
+    const binaryLength = isGCSE ? 8 : 16;
+    const maxDenary = isGCSE ? 255 : 65535;
+
+    const placeValues = { 1: 0, 16: 0, 256: 0, 4096: 0 };
+    const sliders = {};
+    const columnValues = isGCSE ? [16, 1] : [4096, 256, 16, 1];
+
+    // Attach event listeners for sliders
+    ['slider1', 'slider16', 'slider256', 'slider4096'].forEach((sliderId) => {
+        const slider = document.getElementById(sliderId);
+        if (slider) {
+            sliders[sliderId] = slider;
+            slider.addEventListener("input", (e) => {
+                e.stopPropagation(); // Prevent event propagation to Bootstrap
+                updatePlace(parseInt(sliderId.replace('slider', ''), 10));
+            });
+        }
+    });
+
+    function updatePlace(place) {
+        if (sliders[`slider${place}`]) {
+            placeValues[place] = parseInt(sliders[`slider${place}`].value, 10);
+            updateNumbers();
         }
     }
-}
-function convertToBinary(num){
-    var result = "";
-    if(num-8>=0){
-        num = num-8;
-        result = result + "1";
-    }else{
-        result = result + "0";
-    }
-    if(num-4>=0){
-        num = num-4;
-        result = result + "1";
-    }else{
-        result = result + "0";
-    }
-    if(num-2>=0){
-        num = num-2;
-        result = result + "1";
-    }else{
-        result = result + "0";
-    }
-    if(num-1>=0){
-        num = num-1;
-        result = result + "1";
-    }else{
-        result = result + "0";
-    }
-    return result
-}
 
-function updateHexNumber(){
-  let hexadecimalNumber = document.getElementById("hexadecimalNumber").textContent;
-  let hexLength = hexadecimalNumber.length
-  if(hexLength==4){
-      update4096();
-      update256();
-  }
-  update16();
-  update1();
+    function updateNumbers() {
+        let denary = 0;
+        let binary = '';
+        let hexadecimal = '';
+
+        columnValues.forEach((column) => {
+            const value = placeValues[column];
+            denary += value * column;
+            binary += convertToBinary(value);
+            hexadecimal += convertToHex(value);
+        });
+
+        binary = binary.slice(-binaryLength).padStart(binaryLength, '0');
+        hexadecimal = hexadecimal.slice(-hexLength).padStart(hexLength, '0');
+
+        document.getElementById("binaryNumber").innerText = binary;
+        document.getElementById("denaryNumber").innerText = denary;
+        document.getElementById("hexadecimalNumber").innerText = hexadecimal;
+    }
+
+    function convertToBinary(num) {
+        return num.toString(2).padStart(4, '0');
+    }
+
+    function convertToHex(num) {
+        return num.toString(16).toUpperCase();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        updateNumbers();
+    });
 }

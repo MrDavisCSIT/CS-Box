@@ -1,394 +1,210 @@
-denary = 0
-binary = ""
-customBinary = ""
-bit1 = false
-bit2 = false
-bit4 = false
-bit8 = false
-bit16 = false
-bit32 = false
-bit64 = false
-bit128 = false
-bit256 = false
-function resetBinarySimulator(){
-        document.getElementById("blb256").classList.remove('poweredOn');
-        document.getElementById("blb256").classList.add('poweredOff');
-        document.getElementById("swt256").classList.remove('btnActive');
-        bit256 = false;
-        document.getElementById("blb128").classList.add('poweredOff');
-        document.getElementById("blb128").classList.remove('poweredOn');
-        document.getElementById("swt128").classList.remove('btnActive');
-        bit128 = false;
-        document.getElementById("blb64").classList.add('poweredOff');
-        document.getElementById("blb64").classList.remove('poweredOn');
-        document.getElementById("swt64").classList.remove('btnActive');
-        bit64 = false;
-        document.getElementById("blb32").classList.add('poweredOff');
-        document.getElementById("blb32").classList.remove('poweredOn');
-        document.getElementById("swt32").classList.remove('btnActive');
-        bit32 = false;
-        document.getElementById("blb16").classList.add('poweredOff');
-        document.getElementById("blb16").classList.remove('poweredOn');
-        document.getElementById("swt16").classList.remove('btnActive');
-        bit16 = false;
-        document.getElementById("blb8").classList.add('poweredOff');
-        document.getElementById("blb8").classList.remove('poweredOn');
-        document.getElementById("swt8").classList.remove('btnActive');
-        bit8 = false;
-        document.getElementById("blb4").classList.add('poweredOff');
-        document.getElementById("blb4").classList.remove('poweredOn');
-        document.getElementById("swt4").classList.remove('btnActive');
-        bit4 = false;
-        document.getElementById("blb2").classList.add('poweredOff');
-        document.getElementById("blb2").classList.remove('poweredOn');
-        document.getElementById("swt2").classList.remove('btnActive');
-        bit2 = false;
-        document.getElementById("blb1").classList.add('poweredOff');
-        document.getElementById("blb1").classList.remove('poweredOn');
-        document.getElementById("swt1").classList.remove('btnActive');
-        bit1 = false;
+// ** Check if the filename contains "binary" **
+if (window.location.pathname.includes('binary')) {
+
+    let denary = 0;
+    let bits = {
+        '-128': false,
+        '1': false,
+        '2': false,
+        '4': false,
+        '8': false,
+        '16': false,
+        '32': false,
+        '64': false,
+        '128': false
+    };
+
+    let bitValues = [];
+    const twosComplementCheck = document.getElementById("blbN128");
+
+    // ** Initialize the bit values on page load **
+    function initialize() {
+        setBitValues(); // Set the bit values dynamically
+        resetBinarySimulator(); // Reset the simulator to the initial state
+    }
+
+    // ** Dynamically set bit values based on 2's complement mode **
+    function setBitValues() {
+        bitValues = twosComplementCheck 
+            ? [-128, 64, 32, 16, 8, 4, 2, 1] 
+            : [128, 64, 32, 16, 8, 4, 2, 1];
+    }
+
+    // ** Helper function to toggle power for a specific bit **
+    function togglePower(bitValue, isActive) {
+        const bitId = bitValue < 0 ? `N${Math.abs(bitValue)}` : bitValue;
+        const bulb = document.getElementById(`blb${bitId}`);
+        const switchBtn = document.getElementById(`swt${bitId}`);
+        if (bulb && switchBtn) {
+            bulb.classList.toggle('poweredOn', isActive);
+            bulb.classList.toggle('poweredOff', !isActive);
+            switchBtn.classList.toggle('btnActive', isActive);
+        }
+    }
+
+    // ** Reset all bits and denary **
+    function resetBinarySimulator() {
+        Object.keys(bits).forEach(bit => {
+            togglePower(parseInt(bit, 10), false);
+            bits[bit] = false;
+        });
         denary = 0;
         updateBinary();
-}
-function changeClass256(){
-    if (bit256){
-        document.getElementById("blb256").classList.add('poweredOff');
-        document.getElementById("blb256").classList.remove('poweredOn');
-        document.getElementById("swt256").classList.remove('btnActive');
-        bit256 = false;
-        denary = denary - 256;
-        updateBinary();
-    }else{
-        document.getElementById("blb256").classList.add('poweredOn');
-        document.getElementById("blb256").classList.remove('poweredOff');
-        document.getElementById("swt256").classList.add('btnActive');
-        bit256 = true;
-        denary = denary + 256;
-        updateBinary();
     }
-}
-function changeClass128(){
-    if (bit128){
-        document.getElementById("blb128").classList.add('poweredOff');
-        document.getElementById("blb128").classList.remove('poweredOn');
-        document.getElementById("swt128").classList.remove('btnActive');
-        bit128 = false;
-        denary = denary - 128;
-        updateBinary();
-    }else{
-        document.getElementById("blb128").classList.add('poweredOn');
-        document.getElementById("blb128").classList.remove('poweredOff');
-        document.getElementById("swt128").classList.add('btnActive');
-        bit128 = true;
-        denary = denary + 128;
-        updateBinary();
-    }
-}
-function changeClass64(){
-    if (bit64){
-        document.getElementById("blb64").classList.add('poweredOff');
-        document.getElementById("blb64").classList.remove('poweredOn');
-        document.getElementById("swt64").classList.remove('btnActive');
-        bit64 = false;
-        denary = denary - 64;
-        updateBinary();
-    }else{
-        document.getElementById("blb64").classList.add('poweredOn');
-        document.getElementById("blb64").classList.remove('poweredOff');
-        document.getElementById("swt64").classList.add('btnActive');
-        bit64 = true;
-        denary = denary + 64;
-        updateBinary();
-    }
-}
-function changeClass32(){
-    if (bit32){
-        document.getElementById("blb32").classList.add('poweredOff');
-        document.getElementById("blb32").classList.remove('poweredOn');
-        document.getElementById("swt32").classList.remove('btnActive');
-        bit32 = false;
-        denary = denary - 32;
-        updateBinary();
-    }else{
-        document.getElementById("blb32").classList.add('poweredOn');
-        document.getElementById("blb32").classList.remove('poweredOff');
-        document.getElementById("swt32").classList.add('btnActive');
-        bit32 = true;
-        denary = denary + 32;
-        updateBinary();
-    }
-}
-function changeClass16(){
-    if (bit16){
-        document.getElementById("blb16").classList.add('poweredOff');
-        document.getElementById("blb16").classList.remove('poweredOn');
-        document.getElementById("swt16").classList.remove('btnActive');
-        bit16 = false;
-        denary = denary - 16;
-        updateBinary();
-    }else{
-        document.getElementById("blb16").classList.add('poweredOn');
-        document.getElementById("blb16").classList.remove('poweredOff');
-        document.getElementById("swt16").classList.add('btnActive');
-        bit16 = true;
-        denary = denary + 16;
-        updateBinary();
-    }
-}
-function changeClass8(){
-    if (bit8){
-        document.getElementById("blb8").classList.add('poweredOff');
-        document.getElementById("blb8").classList.remove('poweredOn');
-        document.getElementById("swt8").classList.remove('btnActive');
-        bit8 = false;
-        denary = denary - 8;
-        updateBinary();
-    }else{
-        document.getElementById("blb8").classList.add('poweredOn');
-        document.getElementById("blb8").classList.remove('poweredOff');
-        document.getElementById("swt8").classList.add('btnActive');
-        bit8 = true;
-        denary = denary + 8;
-        updateBinary();
-    }
-}
-function changeClass4(){
-    if (bit4){
-        document.getElementById("blb4").classList.add('poweredOff');
-        document.getElementById("blb4").classList.remove('poweredOn');
-        document.getElementById("swt4").classList.remove('btnActive');
-        bit4 = false;
-        denary = denary - 4;
-        updateBinary();
-    }else{
-        document.getElementById("blb4").classList.add('poweredOn');
-        document.getElementById("blb4").classList.remove('poweredOff');
-        document.getElementById("swt4").classList.add('btnActive');
-        bit4 = true;
-        denary = denary + 4;
-        updateBinary();
-    }
-}
-function changeClass2(){
-    if (bit2){
-        document.getElementById("blb2").classList.add('poweredOff');
-        document.getElementById("blb2").classList.remove('poweredOn');
-        document.getElementById("swt2").classList.remove('btnActive');
-        bit2 = false;
-        denary = denary - 2;
-        updateBinary();
-    }else{
-        document.getElementById("blb2").classList.add('poweredOn');
-        document.getElementById("blb2").classList.remove('poweredOff');
-        document.getElementById("swt2").classList.add('btnActive');
-        bit2 = true;
-        denary = denary + 2;
-        updateBinary();
-    }
-}
-function changeClass1(){
-    if (bit1){
-        document.getElementById("blb1").classList.add('poweredOff');
-        document.getElementById("blb1").classList.remove('poweredOn');
-        document.getElementById("swt1").classList.remove('btnActive');
-        bit1 = false;
-        denary = denary - 1;
-        updateBinary();
-    }else{
-        document.getElementById("blb1").classList.add('poweredOn');
-        document.getElementById("blb1").classList.remove('poweredOff');
-        document.getElementById("swt1").classList.add('btnActive');
-        bit1 = true;
-        denary = denary + 1;
-        updateBinary();
-    }
-}
 
-function updateBinary(){
-    binary = ""
-    if(bit256){
-        binary = binary + "1"
-    }else{
-        binary = binary + "0"
+    // ** Toggle a specific bit **
+    function changeBit(bitValue) {
+        const key = getBitKey(bitValue);
+        const isActive = bits[key];
+        togglePower(bitValue, !isActive);
+        bits[key] = !isActive;
+        denary += isActive ? -bitValue : bitValue;
+        updateBinary();
     }
-    if(bit128){
-        binary = binary + "1"
-    }else{
-        binary = binary + "0"
-    }
-    if(bit64){
-        binary = binary + "1"
-    }else{
-        binary = binary + "0"
-    }
-    if(bit32){
-        binary = binary + "1"
-    }else{
-        binary = binary + "0"
-    }
-    if(bit16){
-        binary = binary + "1"
-    }else{
-        binary = binary + "0"
-    }
-    if(bit8){
-        binary = binary + "1"
-    }else{
-        binary = binary + "0"
-    }
-    if(bit4){
-        binary = binary + "1"
-    }else{
-        binary = binary + "0"
-    }
-    if(bit2){
-        binary = binary + "1"
-    }else{
-        binary = binary + "0"
-    }
-    if(bit1){
-        binary = binary + "1"
-    }else{
-        binary = binary + "0"
-    }
-    document.getElementById("denaryNumber").innerHTML = denary;
-    document.getElementById("binaryNumber").innerHTML = binary;
-}
 
-function convertToBinary(num){
-    var result = ""
-    if(num-8>=0){
-        num = num-8;
-        result = result + "1";
-    }else{
-        result = result + "0";
+    // ** Update binary string and denary display **
+    function updateBinary() {
+        const binary = bitValues.map(bit => (bits[getBitKey(bit)] ? '1' : '0')).join('');
+        document.getElementById("denaryNumber").innerText = denary;
+        document.getElementById("binaryNumber").innerText = binary;
     }
-    if(num-4>=0){
-        num = num-4;
-        result = result + "1";
-    }else{
-        result = result + "0";
-    }
-    if(num-2>=0){
-        num = num-2;
-        result = result + "1";
-    }else{
-        result = result + "0";
-    }
-    if(num-1>=0){
-        num = num-1;
-        result = result + "1";
-    }else{
-        result = result + "0";
-    }
-    return result
-}
 
-function binaryParser(binaryPattern){
-    for (let i = 0; i < binaryPattern.length; i++) {
-        if ((binaryPattern[i] == 0) || (binaryPattern[i] == 1)){
-            validInput = true;
-        }else{
-            validInput = false;
-            alert("Invalid pattern! Digit\n"+ i+" is not a 0 or a 1.\nIt is a "+ binaryPattern[i]);
-            return validInput
-        };
-    };
-    return validInput;
-}
-
-function customBinaryParser(binaryPattern){
-    resetBinarySimulator();
-    missingDigits = 9 - binaryPattern.length
-    for (let j = 0; j < missingDigits; j++){
-        binaryPattern = 0 + binaryPattern;
-    };
-    for (let i = 0; i < binaryPattern.length; i++) {
-        if (binaryPattern[i] == 1){
-            if (i == 0){
-                changeClass256();
-            }else if (i == 1){
-                changeClass128();
-            }else if (i == 2){
-                changeClass64();
-            }else if (i == 3){
-                changeClass32();
-            }else if (i == 4){
-                changeClass16();
-            }else if (i == 5){
-                changeClass8();
-            }else if (i == 6){
-                changeClass4();
-            }else if (i == 7){
-                changeClass2();
-            }else if (i == 8){
-                changeClass1();
+    // ** Parse a custom binary string and set bits accordingly **
+    function customBinaryParser(binaryPattern) {
+        resetBinarySimulator();
+        binaryPattern = binaryPattern.padStart(8, '0'); // Ensure 8-bit format
+        binaryPattern.split('').forEach((bit, index) => {
+            if (bit === '1') {
+                changeBit(bitValues[index]);
             }
+        });
+    }
+
+    // ** Parse a custom denary value and set bits accordingly **
+    function customDenaryParser(customDenary) {
+        const min = twosComplementCheck ? -128 : 0;
+        const max = twosComplementCheck ? 127 : 255;
+
+        if (customDenary === null) {
+            customDenary = 0; // Default to 0 if user cancels input
+        }
+
+        if (customDenary < min || customDenary > max) {
+            alert(`Invalid input! Please enter a denary value between ${min} and ${max}.`);
+            return requestDenary(); // Prompt user again
+        }
+
+        resetBinarySimulator();
+        if (twosComplementCheck && customDenary < 0) {
+            let absDenary = Math.abs(customDenary);
+            if (customDenary === -128) {
+                changeBit(-128);
+            } else {
+                bitValues.forEach(bit => {
+                    if (absDenary >= Math.abs(bit)) {
+                        changeBit(bit);
+                        absDenary -= Math.abs(bit);
+                    }
+                });
+                twosComplementFlip();
+            }
+        } else {
+            bitValues.forEach(bit => {
+                if (customDenary >= Math.abs(bit)) {
+                    changeBit(bit);
+                    customDenary -= Math.abs(bit);
+                }
+            });
         }
     }
-}
 
-function requestBinary(){
-    do{
-    customBinary = prompt("Please enter your 9-bit Binary Value");
-        if (customBinary){
-            var binaryLength = customBinary.length;
-        }else{
-            var binaryLength = 0;
-        };        
-    do{
-        if (binaryLength>9){
-            customBinary = prompt("Too many digits.\n\nPlease enter your 9-bit Binary Value");
-            if (customBinary){
-                binaryLength = customBinary.length;
-            }else{
-                binaryLength = 0;
-            };
-        };
-    } while (binaryLength > 9);
-    let validInput = binaryParser(customBinary);
-    } while (!validInput);
-    customBinaryParser(customBinary);
-}
+    // ** Handle logical binary shifting (left or right) **
+    function shiftBinary(direction) {
+        const binaryString = document.getElementById("binaryNumber").innerText;
+        let shiftedBinary;
+        if (direction === 'left') {
+            shiftedBinary = binaryString.slice(1) + '0';
+        } else if (direction === 'right') {
+            shiftedBinary = '0' + binaryString.slice(0, -1);
+        }
+        customBinaryParser(shiftedBinary);
+    }
 
-function customDenaryParser(customDenary){
-    resetBinarySimulator();
-    let columnValues = [256,128,64,32,16,8,4,2,1]
-    for (let i = 0; i < 10; i++) {
-        if (!(customDenary-columnValues[i] < 0)){
-            customDenary = customDenary - columnValues[i];
-            if (i == 0){
-                changeClass256();
-            }else if (i == 1){
-                changeClass128();
-            }else if (i == 2){
-                changeClass64();
-            }else if (i == 3){
-                changeClass32();
-            }else if (i == 4){
-                changeClass16();
-            }else if (i == 5){
-                changeClass8();
-            }else if (i == 6){
-                changeClass4();
-            }else if (i == 7){
-                changeClass2();
-            }else if (i == 8){
-                changeClass1();
-            }
-            if (customDenary == 0){
+    // ** Handle arithmetic shifting for 2's complement **
+    function shiftTwosComplement(direction) {
+        const binaryString = document.getElementById("binaryNumber").innerText;
+        let shiftedBinary;
+        if (direction === 'left') {
+            shiftedBinary = binaryString.slice(1) + '0';
+        } else if (direction === 'right') {
+            shiftedBinary = binaryString[0] + binaryString.slice(0, -1);
+        }
+        customBinaryParser(shiftedBinary);
+    }
+
+    // ** Flip binary bits for 2's complement **
+    function twosComplementFlip() {
+        let binary = document.getElementById("binaryNumber").innerText;
+        const flippedBinary = binary.split('').map(bit => (bit === '1' ? '0' : '1')).join('');
+        const result = addBinaryNumbers(flippedBinary, '00000001');
+        customBinaryParser(result.binaryResult);
+    }
+
+    // ** Add two binary numbers **
+    function addBinaryNumbers(binary1, binary2) {
+        let carry = 0;
+        let result = '';
+        for (let i = 7; i >= 0; i--) {
+            const bit1 = parseInt(binary1[i], 10) || 0;
+            const bit2 = parseInt(binary2[i], 10) || 0;
+            const sum = bit1 + bit2 + carry;
+            result = (sum % 2) + result;
+            carry = Math.floor(sum / 2);
+        }
+        return { binaryResult: result.slice(-8), overflow: carry ? '1' : '0' };
+    }
+
+    // ** Helper to normalize bit keys **
+    function getBitKey(bitValue) {
+        return bitValue < 0 ? `N${Math.abs(bitValue)}` : bitValue.toString();
+    }
+
+    // ** Request binary input from user **
+    function requestBinary() {
+        let binary;
+        do {
+            binary = prompt("Please enter an 8-bit Binary Value (only 0s and 1s are allowed):");
+            if (binary === null) {
+                binary = "00000000"; // Default to 0 if user cancels input
                 break;
             }
-        }
+            if (!/^[01]{1,8}$/.test(binary)) {
+                alert("Invalid input! Binary values must be up to 8 digits long and only contain 0 or 1.");
+            }
+        } while (!/^[01]{1,8}$/.test(binary));
+        customBinaryParser(binary);
     }
-}
 
-function requestDenary(){
-    customDenary = prompt("Please enter your Denary Value\nMax value is 511");
-    do{
-        if (customDenary > 511){
-            customDenary = prompt("Number too large.\n\nPlease enter your Denary Value.\nMax value is 511");
-        };
-    } while (customDenary > 511);
-    customDenaryParser(customDenary);
+    // ** Request denary input from user **
+    function requestDenary() {
+        let customDenary;
+        const min = twosComplementCheck ? -128 : 0;
+        const max = twosComplementCheck ? 127 : 255;
+
+        do {
+            customDenary = prompt(`Enter a Denary Value (${min} to ${max}):`);
+            if (customDenary === null) {
+                customDenary = 0; // Default to 0 if user cancels input
+                break;
+            }
+            customDenary = parseInt(customDenary, 10);
+            if (isNaN(customDenary) || customDenary < min || customDenary > max) {
+                alert(`Invalid input! Please enter a denary value between ${min} and ${max}.`);
+            }
+        } while (isNaN(customDenary) || customDenary < min || customDenary > max);
+        customDenaryParser(customDenary);
+    }
+
+    // ** On page load, initialize the simulator **
+    document.addEventListener("DOMContentLoaded", initialize);
 }

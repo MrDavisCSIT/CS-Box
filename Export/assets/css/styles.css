@@ -399,7 +399,7 @@ a {
 .dropdown-item.active, .dropdown-item:active {
   color: #19f5aa!important;
   text-decoration: none;
-  background-color: var(--bs-dropdown-link-active-bg);
+  background-color: rgb(45, 44, 56);
 }
 
 .dropdown-item:hover, .dropdown-item:focus {
@@ -418,5 +418,11 @@ a {
 
 .hexSliders {
   height: 150px;
+}
+
+.hexadecimalButtons {
+  margin: 0.5em auto 0.5em auto;
+  display: flex;
+  height: 38px;
 }
 
