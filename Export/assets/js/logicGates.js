@@ -1,77 +1,105 @@
-let notValue = true;
-let andValue = false;
-let orValue = false;
-let input1 = false;
-let input2 = false;
+let inputs = {
+    input1: false,
+    input2: false
+};
 
-const pageHeading = document.getElementById("pageHeading")?.textContent || "";
+let gateValue = false;
 
-// **Toggle any gate input (e.g., input1, input2, or NOT gate)**
-function toggleGate(gateType) {
-    const gateKey = gateType === 'NOT' ? 'NotGate' : `Input${gateType}`;
-    const gateSwitch = document.getElementById(`swt${gateKey}`);
-    const isActive = gateType === '1' ? input1 : gateType === '2' ? input2 : notValue;
-
-    const newValue = !isActive;
-    if (gateType === '1') input1 = newValue;
-    if (gateType === '2') input2 = newValue;
-    if (gateType === 'NOT') notValue = newValue;
-
-    gateSwitch?.classList.toggle('btnActive', newValue);
-
-    updateGates();
+// ** Toggle input (handles both input1 and input2) **
+function toggleInput(inputNumber) {
+    const inputKey = `input${inputNumber}`;
+    inputs[inputKey] = !inputs[inputKey];
+    updateInputState(`swtInput${inputNumber}`, inputs[inputKey]);
+    updateGate();
 }
 
-// **Update AND, OR, and NOT gates based on the current input state**
-function updateGates() {
-    if (pageHeading === "AND Gate") updateGate('AndGate', input1 && input2);
-    if (pageHeading === "OR Gate") updateGate('OrGate', input1 || input2);
-    if (pageHeading === "NOT Gate") updateGate('NotGate', !notValue);
+// ** Update the gate's state based on the current inputs and gate type **
+function updateGate() {
+    const pageHeading = document.getElementById("pageHeading").textContent;
+    gateValue = evaluateGate(pageHeading);
+    updateGateLight(pageHeading, gateValue);
 }
 
-// **Toggle the output bulb for a gate (e.g., AndGate, OrGate, or NotGate)**
-function updateGate(gateName, isActive) {
-    const bulb = document.getElementById(`blb${gateName}`);
-    if (!bulb) return;
+// ** Evaluate the gate logic **
+function evaluateGate(pageHeading) {
+    const { input1, input2 } = inputs;
 
-    bulb.classList.toggle('poweredOn', isActive);
-    bulb.classList.toggle('poweredOff', !isActive);
-    
-    if (gateName === 'AndGate') andValue = isActive;
-    if (gateName === 'OrGate') orValue = isActive;
+    switch (pageHeading) {
+        case "AND Gate":
+            return input1 && input2;
+        case "OR Gate":
+            return input1 || input2;
+        case "NOT Gate":
+            return !input1; // NOT gate only uses Input1
+        case "NAND Gate":
+            return !(input1 && input2); // Correct NAND logic
+        case "NOR Gate":
+            return !(input1 || input2);
+        case "XOR Gate":
+            return input1 !== input2; // XOR is true if inputs are different
+        case "XNOR Gate":
+            return input1 === input2; // XNOR is true if inputs are the same
+        default:
+            console.error("Unknown Gate Type");
+            return false;
+    }
 }
 
-// **Reset the gate to its default state**
+// ** Update the lightbulb based on the gate's value **
+function updateGateLight(pageHeading, value) {
+    const lightBulbId = getLightBulbId(pageHeading);
+    const lightBulb = document.getElementById(lightBulbId);
+    if (lightBulb) {
+        lightBulb.classList.toggle("poweredOn", value);
+        lightBulb.classList.toggle("poweredOff", !value);
+    }
+}
+
+// ** Get the correct lightbulb ID based on the gate type **
+function getLightBulbId(pageHeading) {
+    switch (pageHeading) {
+        case "AND Gate":
+            return "blbAndGate";
+        case "OR Gate":
+            return "blbOrGate";
+        case "NOT Gate":
+            return "blbNotGate";
+        case "NAND Gate":
+            return "blbNandGate";
+        case "NOR Gate":
+            return "blbNorGate";
+        case "XOR Gate":
+            return "blbXorGate";
+        case "XNOR Gate":
+            return "blbXnorGate";
+        default:
+            console.error("Unknown Gate Type");
+            return null;
+    }
+}
+
+// ** Update the toggle switch to reflect its active/inactive state **
+function updateInputState(switchId, isActive) {
+    const toggleSwitch = document.getElementById(switchId);
+    if (toggleSwitch) {
+        toggleSwitch.classList.toggle("btnActive", isActive);
+    }
+}
+
+// ** Reset the gate to its default state **
 function resetGate() {
-    if (pageHeading === "AND Gate" || pageHeading === "OR Gate") {
-        resetInput('1');
-        resetInput('2');
-    } else if (pageHeading === "NOT Gate") {
-        resetNotGate();
-    }
-    updateGates();
-}
+    inputs.input1 = false;
+    inputs.input2 = false;
+    updateInputState("swtInput1", inputs.input1);
+    updateInputState("swtInput2", inputs.input2);
 
-// **Reset the inputs for Input1 or Input2**
-function resetInput(inputNumber) {
-    if (inputNumber === '1') input1 = false;
-    if (inputNumber === '2') input2 = false;
+    const pageHeading = document.getElementById("pageHeading").textContent;
 
-    const switchElement = document.getElementById(`swtInput${inputNumber}`);
-    if (switchElement) switchElement.classList.remove('btnActive');
-}
-
-// **Reset the NOT gate to its default state**
-function resetNotGate() {
-    notValue = false; // NOT Gate logic is inverted, so this is "off" input
-    const bulb = document.getElementById("blbNotGate");
-    const switchElement = document.getElementById("swtNotGate");
-
-    if (bulb) {
-        bulb.classList.add('poweredOn'); // Light should be on
-        bulb.classList.remove('poweredOff');
-    }
-    if (switchElement) {
-        switchElement.classList.remove('btnActive'); // Button should be off (inactive)
+    if (pageHeading === "NOT Gate") {
+        // For NOT Gate, the light should be on by default
+        gateValue = true;
+        updateGateLight(pageHeading, gateValue);
+    } else {
+        updateGate();
     }
 }
