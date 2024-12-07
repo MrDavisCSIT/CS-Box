@@ -20,7 +20,8 @@ Available at [csbox.mrdaviscsit.uk](https://csbox.mrdaviscsit.uk)
 - [ ] XOR Gate Simulator
 - [ ] XNOR Gate Simulator
 
-### Wave 3 CS:Box Features (July 2025)
+### Wave 3 CS:Box Features (TBC)
 - [ ] Compound Gate Simulator
+- [ ] Two's Compliment Simulator
 
 ## Version 1.0 Release Date: 1<sup>st</sup> September 2025
