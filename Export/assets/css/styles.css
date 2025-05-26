@@ -57,7 +57,7 @@ html {
 }
 
 .reset {
-  background-image: url("/assets/img/BitBoxLogo.png?h=a50b3ddb5614299b0c00dd4f01bc402e");
+  background-image: url("../../assets/img/BitBoxLogo.png?h=a50b3ddb5614299b0c00dd4f01bc402e");
   height: 100px;
   width: 100px;
 }
