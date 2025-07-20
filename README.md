@@ -15,10 +15,10 @@ Available at [csbox.mrdaviscsit.uk](https://csbox.mrdaviscsit.uk)
 - [x] AND Gate Simulator
 
 ### Wave 2 CS:Box Features (May 2025)
-- [ ] NOR Gate Simulator
-- [ ] NAND Gate Simulator
-- [ ] XOR Gate Simulator
-- [ ] XNOR Gate Simulator
+- [X] NOR Gate Simulator
+- [X] NAND Gate Simulator
+- [X] XOR Gate Simulator
+- [X] XNOR Gate Simulator
 
 ### Wave 3 CS:Box Features (TBC)
 - [ ] Compound Gate Simulator
