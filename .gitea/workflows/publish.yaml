@@ -1,26 +1,31 @@
-name: Publish
+name: Publish to Server
 run-name: ${{ gitea.actor }} is publishing your site using Gitea Actions 🚀
 
 on:
   workflow_dispatch:
+  # Trigger the workflow on push
   push:
     branches: [main]
 
+# Authenticate to the the server via ssh
+# and run our deployment script (sftp upload)
 jobs:
-  publish:
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v3
+
       - name: SFTP upload
-        uses: Dylan700/sftp-upload-action@v1.2.3
+        uses: Dylan700/sftp-upload-action@latest
         with:
-          server: sagittarius.premium.hostns.io
-          username: adcmnetworks
-          key: ${{secrets.PRIVATE_KEY}}
+          server: ${{ vars.SSH_HOST }}
+          username: ${{ vars.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
           port: 22
           uploads: |
-            ./export => /home/adcmnetworks/csbox
+            . => ${{ vars.SSH_FOLDER }}
           delete: 'true'
           ignore: |
             *.git
