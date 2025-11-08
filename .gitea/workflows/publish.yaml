@@ -14,13 +14,20 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Copy files via SSH
-        uses: appleboy/scp-action@v1
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: SFTP upload
+        uses: Dylan700/sftp-upload-action@latest
         with:
-          host: ${{ vars.SSH_HOST }}
+          server: ${{ vars.SSH_HOST }}
           username: ${{ vars.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
-          port: ${{ secrets.PORT }}
-          source: ${{ vars.GIT_FOLDER }}
-          target: ${{ vars.SSH_FOLDER }}
+          passphrase: ${{ secrets.KEY_PASSWORD }}
+          port: 22
+          uploads: |
+            . => ${{ vars.SSH_FOLDER }}
+          delete: 'true'
+          ignore: |
+            *.git
+            */**/*git*
