@@ -14,7 +14,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: SFTP upload
-        uses: Dylan700/sftp-upload-action@latest
+        uses: Dylan700/sftp-upload-action@v1.2.3
         with:
           server: sagittarius.premium.hostns.io
           username: adcmnetworks
