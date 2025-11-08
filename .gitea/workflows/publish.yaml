@@ -19,7 +19,7 @@ jobs:
         with:
           server: sagittarius.premium.hostns.io
           username: adcmnetworks
-          key: ${{secrets.key}}
+          key: ${{secrets.PRIVATE_KEY}}
           port: 22
           uploads: |
             ./export => /home/adcmnetworks/csbox
