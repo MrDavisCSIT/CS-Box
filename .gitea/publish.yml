@@ -1,4 +1,5 @@
 name: Publish
+run-name: ${{ gitea.actor }} is publishing your site using Gitea Actions 🚀
 
 on:
   workflow_dispatch:
