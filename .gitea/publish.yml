@@ -1,0 +1,15 @@
+- name: Checkout
+  uses: actions/checkout@v4
+- name: SFTP upload
+  uses: Dylan700/sftp-upload-action@latest
+  with:
+    server: sagittarius.premium.hostns.io
+    username: adcmnetworks
+    password: ${{secrets.password}}
+    port: 22
+    uploads: |
+      ./export => /home/adcmnetworks/csbox
+    delete: 'true'
+    ignore: |
+      *.git
+      */**/*git*
