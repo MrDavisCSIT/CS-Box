@@ -31,11 +31,14 @@
     <link rel="icon" type="image/svg+xml" sizes="500x500" href="assets/img/CSBoxLogo.svg?h=ca838acaf7f1bc97e10657f07ed63d71">
     <link rel="icon" type="image/svg+xml" sizes="500x500" href="assets/img/CSBoxLogo.svg?h=ca838acaf7f1bc97e10657f07ed63d71">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css?h=bec7173809e9299f24e368ea574911e3">
-    <link rel="stylesheet" href="assets/css/styles.min.css?h=6be15fe0d1cfa81af69e0d5a16f5c85d">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans&amp;display=swap">
+    <link rel="stylesheet" href="assets/css/styles.min.css?h=05023c48128d85662d4f89782ddfb125">
 </head>
 
 <body>
     <header class="bg-dark">
+        <!-- Start: Site Navigation -->
         <nav class="navbar navbar-expand-md sticky-top py-3 navbar-dark" id="mainNav" style="background: rgb(45, 44, 56);">
             <div class="container"><img src="assets/img/CSBoxLogo.svg?h=ca838acaf7f1bc97e10657f07ed63d71" style="width: 32px;margin: 5px;"><a class="navbar-brand d-flex align-items-center" href="/"><span>CS:Box</span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-5"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navcol-5">
@@ -55,8 +58,8 @@
                     </ul>
                 </div>
             </div>
-        </nav>
-    </header>
+        </nav><!-- End: Site Navigation -->
+    </header><!-- Start: Hero Banner Color -->
     <section class="d-print-none d-lg-none d-xl-none d-xxl-none py-4 py-xl-5">
         <div class="container h-100">
             <div class="text-white border rounded border-0 p-1 bg-danger">
@@ -70,8 +73,9 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section><!-- End: Hero Banner Color -->
     <section class="d-none d-print-block d-sm-none d-md-none d-lg-block d-xl-block d-xxl-block" style="background: rgb(39,38,46);">
+        <!-- Start: 1 Row 2 Columns -->
         <div class="container" style="width: 100%;margin-top: 15px;">
             <div class="row">
                 <div class="col" style="height: 120px;"></div>
@@ -81,7 +85,8 @@
                     <h1 id="pageHeading" class="simHeading">XOR Gate</h1>
                 </div>
             </div>
-        </div>
+        </div><!-- End: 1 Row 2 Columns -->
+        <!-- Start: 1 Row 3 Columns -->
         <div class="container">
             <div class="row">
                 <div class="col-auto logicGates centred" style="height: 194px;"><button class="btn btn-primary buttonMiddle logicGateInput1" id="swtInput1" type="button" onclick="toggleInput(1)" style="display: grid;position: relative;transform: translate(58px);">⏼</button><button class="btn btn-primary buttonMiddle logicGateInput2" id="swtInput2" type="button" onclick="toggleInput(2)" style="position: relative;display: grid;">⏼</button><img class="logicGate" src="https://upload.wikimedia.org/wikipedia/commons/0/01/XOR_ANSI.svg" width="460" height="240">
@@ -91,20 +96,23 @@
             <div class="row">
                 <div class="col-auto logicGates centred" style="height: 194px;"><button class="btn btn-primary warning btnReset" id="gateReset-1" type="button" style="margin-top: 3em;" onclick="resetGate()">Reset</button></div>
             </div>
-        </div>
+        </div><!-- End: 1 Row 3 Columns -->
         <div class="container d-xl-flex justify-content-xl-center centred" style="height: 120px;"></div>
-    </section>
+    </section><!-- Start: Footer Multi Column -->
     <footer style="background: rgb(45,44,56);">
         <div class="container py-4 py-lg-5">
             <div class="row justify-content-center">
+                <!-- Start: About Project -->
                 <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column">
                     <h1 style="font-size: 16px;font-weight: bold;margin-top: 10px;">About Project</h1><a href="https://github.com/MrDavisCSIT/CS-Box" target="_blank">
                         <div class="fw-bold d-flex align-items-center mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-github" style="font-size: 25px;margin-right: 10px;">
                                 <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8"></path>
                             </svg><span>GitHub</span></div>
                     </a>
-                </div>
-                <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column"></div>
+                </div><!-- End: About Project -->
+                <!-- Start: About -->
+                <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column"></div><!-- End: About -->
+                <!-- Start: Social Links -->
                 <div class="col-sm-4 col-md-3 text-center text-lg-start d-flex flex-column">
                     <h1 style="font-size: 16px;font-weight: bold;margin-top: 10px;">Social Media</h1>
                     <div class="row">
@@ -119,18 +127,19 @@
                                 </svg></a></div>
                         <div class="col-md-3"></div>
                     </div>
-                </div>
+                </div><!-- End: Social Links -->
+                <!-- Start: Branding -->
                 <div class="col-lg-3 text-center text-lg-start d-flex flex-column align-items-center order-first align-items-lg-start order-lg-last">
                     <div class="fw-bold d-flex align-items-center mb-2"><img src="assets/img/CSBoxLogo.svg?h=ca838acaf7f1bc97e10657f07ed63d71" style="width: 32px;margin: 5px;"><span>CS:Box</span></div>
                     <p class="text-muted">Computer Science Concept Simulators</p>
-                </div>
+                </div><!-- End: Branding -->
             </div>
             <hr>
             <div class="text-muted d-flex justify-content-between align-items-center pt-3">
                 <p class="mb-0">Copyright © 2025 CS:Box<br>Powered By ADCM Networks</p>
             </div>
         </div>
-    </footer>
+    </footer><!-- End: Footer Multi Column -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/script.min.js?h=0285b128be1c36f7774d736c7ffa9df9"></script>
