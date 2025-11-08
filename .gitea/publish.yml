@@ -5,7 +5,7 @@
   with:
     server: sagittarius.premium.hostns.io
     username: adcmnetworks
-    password: ${{secrets.password}}
+    key: ${{secrets.key}}
     port: 22
     uploads: |
       ./export => /home/adcmnetworks/csbox
