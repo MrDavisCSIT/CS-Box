@@ -1,15 +1,28 @@
-- name: Checkout
-  uses: actions/checkout@v4
-- name: SFTP upload
-  uses: Dylan700/sftp-upload-action@latest
-  with:
-    server: sagittarius.premium.hostns.io
-    username: adcmnetworks
-    key: ${{secrets.key}}
-    port: 22
-    uploads: |
-      ./export => /home/adcmnetworks/csbox
-    delete: 'true'
-    ignore: |
-      *.git
-      */**/*git*
+name: Publish
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ./export
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: SFTP upload
+        uses: Dylan700/sftp-upload-action@latest
+        with:
+          server: sagittarius.premium.hostns.io
+          username: adcmnetworks
+          key: ${{secrets.key}}
+          port: 22
+          uploads: |
+            ./export => /home/adcmnetworks/csbox
+          delete: 'true'
+          ignore: |
+            *.git
+            */**/*git*
