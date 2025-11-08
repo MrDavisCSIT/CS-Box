@@ -25,7 +25,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: 22
           uploads: |
-            . => ${{ vars.SSH_FOLDER }}
+            ${{ vars.GIT_FOLDER }} => ${{ vars.SSH_FOLDER }}
           delete: 'true'
           ignore: |
             *.git
